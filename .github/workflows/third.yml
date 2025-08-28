@@ -1,0 +1,12 @@
+name: Third
+on:
+  workflow_run:
+    workflows: ["Second"]       # a 2. workflow neve
+    types: [completed]
+
+jobs:
+  job3:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Third done"
